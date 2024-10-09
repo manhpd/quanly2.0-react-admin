@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { useToggle, useFullscreen } from 'react-use';
 import styled from 'styled-components';
 
-import { USER_LIST } from '@/_mock/assets';
+// import { USER_LIST } from '@/_mock/assets';
 import { Iconify } from '@/components/icon';
 import { useRouter } from '@/router/hooks';
 import { replaceDynamicParams } from '@/router/hooks/use-current-route-meta';
@@ -65,7 +65,8 @@ export default function MultiTabs({ offsetTop = false }: Props) {
         const userId = tab.params?.id;
         const defaultLabel = t(tab.label);
         if (userId) {
-          const user = USER_LIST.find((item) => item.id === userId);
+          // const user = [USER_LIST].find((item) => item.id === userId);
+          const user = { username: 'A' };
           return `${user?.username}-${defaultLabel}`;
         }
         return defaultLabel;

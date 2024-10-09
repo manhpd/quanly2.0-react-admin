@@ -14,7 +14,7 @@ const { VITE_APP_HOMEPAGE: HOMEPAGE } = import.meta.env;
 type UserStore = {
   userInfo: Partial<UserInfo>;
   userToken: UserToken;
-  // 使用 actions 命名空间来存放所有的 action
+  // create actions
   actions: {
     setUserInfo: (userInfo: UserInfo) => void;
     setUserToken: (token: UserToken) => void;
@@ -59,8 +59,8 @@ export const useSignIn = () => {
   const signIn = async (data: SignInReq) => {
     try {
       const res = await signInMutation.mutateAsync(data);
-      const { user, accessToken, refreshToken } = res;
-      setUserToken({ accessToken, refreshToken });
+      const { user, token, refreshToken, tokenExpires } = res;
+      setUserToken({ token, refreshToken, tokenExpires });
       setUserInfo(user);
       navigatge(HOMEPAGE, { replace: true });
     } catch (err) {

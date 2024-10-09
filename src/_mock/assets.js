@@ -1,40 +1,40 @@
-import { faker } from '@faker-js/faker';
+// import { faker } from '@faker-js/faker';
 
-import { BasicStatus, PermissionType } from '#/enum';
+// import { BasicStatus, PermissionType } from '#/enum';
 
-/**
- * Organization data mock
- */
-export const ORG_LIST = [
-  {
-    id: '1',
-    name: 'East China Branch',
-    status: 'enable',
-    desc: faker.lorem.words(),
-    order: 1,
-    children: [
-      { id: '1-1', name: 'R&D Department', status: 'disable', desc: '', order: 1 },
-      { id: '1-2', name: 'Marketing Department', status: 'enable', desc: '', order: 2 },
-      { id: '1-3', name: 'Finance Department', status: 'enable', desc: '', order: 3 },
-    ],
-  },
-  {
-    id: '2',
-    name: 'South China Branch',
-    status: 'enable',
-    desc: faker.lorem.words(),
-    order: 2,
-    children: [
-      { id: '2-1', name: 'R&D Department', status: 'disable', desc: '', order: 1 },
-      { id: '2-2', name: 'Marketing Department', status: 'enable', desc: '', order: 2 },
-      { id: '2-3', name: 'Finance Department', status: 'enable', desc: '', order: 3 },
-    ],
-  }
-];
+// /**
+//  * Organization data mock
+//  */
+// export const ORG_LIST = [
+//   {
+//     id: '1',
+//     name: 'East China Branch',
+//     status: 'enable',
+//     desc: faker.lorem.words(),
+//     order: 1,
+//     children: [
+//       { id: '1-1', name: 'R&D Department', status: 'disable', desc: '', order: 1 },
+//       { id: '1-2', name: 'Marketing Department', status: 'enable', desc: '', order: 2 },
+//       { id: '1-3', name: 'Finance Department', status: 'enable', desc: '', order: 3 },
+//     ],
+//   },
+//   {
+//     id: '2',
+//     name: 'South China Branch',
+//     status: 'enable',
+//     desc: faker.lorem.words(),
+//     order: 2,
+//     children: [
+//       { id: '2-1', name: 'R&D Department', status: 'disable', desc: '', order: 1 },
+//       { id: '2-2', name: 'Marketing Department', status: 'enable', desc: '', order: 2 },
+//       { id: '2-3', name: 'Finance Department', status: 'enable', desc: '', order: 3 },
+//     ],
+//   }
+// ];
 
-/**
- * User permission mock
- */
+// /**
+//  * User permission mock
+//  */
 const DASHBOARD_PERMISSION = {
   id: '9100714781927703',
   parentId: '',
@@ -479,9 +479,9 @@ export const PERMISSION_LIST = [
   ...OTHERS_PERMISSION,
 ];
 
-/**
- * User role mock
- */
+// /**
+//  * User role mock
+//  */
 const ADMIN_ROLE = {
   id: '4281707933534332',
   name: 'Admin',
@@ -502,9 +502,9 @@ const TEST_ROLE = {
 };
 export const ROLE_LIST = [ADMIN_ROLE, TEST_ROLE];
 
-/**
- * User data mock
- */
+// /**
+//  * User data mock
+//  */
 export const DEFAULT_USER = {
   id: 'b34719e1-ce46-457e-9575-99505ecee828',
   username: 'admin',

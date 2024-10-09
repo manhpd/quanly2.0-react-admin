@@ -2,22 +2,24 @@ import { Button, Card, Popconfirm } from 'antd';
 import Table, { ColumnsType } from 'antd/es/table';
 import { useState } from 'react';
 
-import { ROLE_LIST } from '@/_mock/assets';
+// import { ROLE_LIST } from '@/_mock/assets';
 import { IconButton, Iconify } from '@/components/icon';
 import ProTag from '@/theme/antd/components/tag';
 
 import { RoleModal, RoleModalProps } from './role-modal';
 
 import { Role } from '#/entity';
-import { BasicStatus } from '#/enum';
 
-const ROLES: Role[] = ROLE_LIST;
+// const ROLES: Role[] = ROLE_LIST;
 
 const DEFAULE_ROLE_VALUE: Role = {
   id: '',
   name: '',
   label: '',
-  status: BasicStatus.ENABLE,
+  status: {
+    id: '1',
+    name: 'Active',
+  },
   permission: [],
 };
 export default function RolePage() {
@@ -49,8 +51,8 @@ export default function RolePage() {
       align: 'center',
       width: 120,
       render: (status) => (
-        <ProTag color={status === BasicStatus.DISABLE ? 'error' : 'success'}>
-          {status === BasicStatus.DISABLE ? 'Disable' : 'Enable'}
+        <ProTag color={status.name === 'Active' ? 'error' : 'success'}>
+          {status.name === 'Inactive' ? 'Disable' : 'Enable'}
         </ProTag>
       ),
     },
@@ -111,7 +113,8 @@ export default function RolePage() {
         scroll={{ x: 'max-content' }}
         pagination={false}
         columns={columns}
-        dataSource={ROLES}
+        // dataSource={ROLES}
+        dataSource={[]}
       />
 
       <RoleModal {...roleModalPros} />

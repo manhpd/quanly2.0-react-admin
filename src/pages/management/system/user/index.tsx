@@ -1,16 +1,15 @@
 import { Button, Card, Popconfirm } from 'antd';
 import Table, { ColumnsType } from 'antd/es/table';
 
-import { USER_LIST } from '@/_mock/assets';
+// import { USER_LIST } from '@/_mock/assets';
 import { IconButton, Iconify } from '@/components/icon';
 import { usePathname, useRouter } from '@/router/hooks';
 import ProTag from '@/theme/antd/components/tag';
 import { useThemeToken } from '@/theme/hooks';
 
 import type { Role, UserInfo } from '#/entity';
-import { BasicStatus } from '#/enum';
 
-const USERS: UserInfo[] = USER_LIST;
+// const USERS: UserInfo[] = USER_LIST;
 
 export default function RolePage() {
   const { colorTextSecondary } = useThemeToken();
@@ -27,7 +26,7 @@ export default function RolePage() {
           <div className="flex">
             <img alt="" src={record.avatar} className="h-10 w-10 rounded-full" />
             <div className="ml-2 flex flex-col">
-              <span className="text-sm">{record.username}</span>
+              {/* <span className="text-sm">{record.username}</span> */}
               <span style={{ color: colorTextSecondary }} className="text-xs">
                 {record.email}
               </span>
@@ -49,8 +48,8 @@ export default function RolePage() {
       align: 'center',
       width: 120,
       render: (status) => (
-        <ProTag color={status === BasicStatus.DISABLE ? 'error' : 'success'}>
-          {status === BasicStatus.DISABLE ? 'Disable' : 'Enable'}
+        <ProTag color={status.name === 'Inactive' ? 'error' : 'success'}>
+          {status.name === 'Inactive' ? 'Disable' : 'Enable'}
         </ProTag>
       ),
     },
@@ -96,7 +95,8 @@ export default function RolePage() {
         scroll={{ x: 'max-content' }}
         pagination={false}
         columns={columns}
-        dataSource={USERS}
+        // dataSource={USERS}
+        dataSource={[]}
       />
     </Card>
   );

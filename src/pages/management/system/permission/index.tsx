@@ -5,13 +5,13 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { IconButton, Iconify, SvgIcon } from '@/components/icon';
-import { useUserPermission } from '@/store/userStore';
+// import { useUserPermission } from '@/store/userStore';
 import ProTag from '@/theme/antd/components/tag';
 
 import PermissionModal, { type PermissionModalProps } from './permission-modal';
 
 import { Permission } from '#/entity';
-import { BasicStatus, PermissionType } from '#/enum';
+import { PermissionType } from '#/enum';
 
 const defaultPermissionValue: Permission = {
   id: '',
@@ -22,11 +22,14 @@ const defaultPermissionValue: Permission = {
   component: '',
   icon: '',
   hide: false,
-  status: BasicStatus.ENABLE,
+  status: {
+    id: '1',
+    name: 'Active',
+  },
   type: PermissionType.CATALOGUE,
 };
 export default function PermissionPage() {
-  const permissions = useUserPermission();
+  // const permissions = useUserPermission();
   const { t } = useTranslation();
 
   const [permissionModalProps, setPermissionModalProps] = useState<PermissionModalProps>({
@@ -75,8 +78,8 @@ export default function PermissionPage() {
       align: 'center',
       width: 120,
       render: (status) => (
-        <ProTag color={status === BasicStatus.DISABLE ? 'error' : 'success'}>
-          {status === BasicStatus.DISABLE ? 'Disable' : 'Enable'}
+        <ProTag color={status.name === 'Inactive' ? 'error' : 'success'}>
+          {status.name === 'Active' ? 'Disable' : 'Enable'}
         </ProTag>
       ),
     },
@@ -139,7 +142,8 @@ export default function PermissionPage() {
         scroll={{ x: 'max-content' }}
         pagination={false}
         columns={columns}
-        dataSource={permissions}
+        // dataSource={permissions}
+        dataSource={[]}
       />
 
       <PermissionModal {...permissionModalProps} />

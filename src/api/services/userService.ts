@@ -3,7 +3,7 @@ import apiClient from '../apiClient';
 import { UserInfo, UserToken } from '#/entity';
 
 export interface SignInReq {
-  username: string;
+  email: string;
   password: string;
 }
 
@@ -13,8 +13,8 @@ export interface SignUpReq extends SignInReq {
 export type SignInRes = UserToken & { user: UserInfo };
 
 export enum UserApi {
-  SignIn = '/auth/signin',
-  SignUp = '/auth/signup',
+  SignIn = '/auth/email/login',
+  SignUp = '/auth/email/register',
   Logout = '/auth/logout',
   Refresh = '/auth/refresh',
   User = '/user',
@@ -23,6 +23,7 @@ export enum UserApi {
 const signin = (data: SignInReq) => apiClient.post<SignInRes>({ url: UserApi.SignIn, data });
 const signup = (data: SignUpReq) => apiClient.post<SignInRes>({ url: UserApi.SignUp, data });
 const logout = () => apiClient.get({ url: UserApi.Logout });
+const refresh = () => apiClient.get<UserToken>({ url: UserApi.Refresh });
 const findById = (id: string) => apiClient.get<UserInfo[]>({ url: `${UserApi.User}/${id}` });
 
 export default {
@@ -30,4 +31,5 @@ export default {
   signup,
   findById,
   logout,
+  refresh,
 };

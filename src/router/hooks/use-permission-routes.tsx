@@ -8,11 +8,12 @@ import { useUserPermission } from '@/store/userStore';
 import ProTag from '@/theme/antd/components/tag';
 import { flattenTrees } from '@/utils/tree';
 
+import { getRoutesFromModules } from '../utils';
+
 import { Permission } from '#/entity';
-import { BasicStatus, PermissionType } from '#/enum';
+import { PermissionType } from '#/enum';
 import { AppRouteObject } from '#/router';
 
-// 使用 import.meta.glob 获取所有路由组件
 const entryPath = '/src/pages';
 const pages = import.meta.glob('/src/pages/**/*.tsx');
 export const pagesSelect = Object.entries(pages).map(([path]) => {
@@ -32,10 +33,9 @@ function resolveComponent(path: string) {
  * return routes about permission
  */
 export function usePermissionRoutes() {
-  // 切换回静态路由
-  // return useMemo(() => {
-  //   return getRoutesFromModules();
-  // }, []);
+  return useMemo(() => {
+    return getRoutesFromModules();
+  }, []);
 
   const permissions = useUserPermission();
 
@@ -82,7 +82,7 @@ function transformPermissionToMenuRoutes(
         key: getCompleteRoute(permission, flattenedPermissions),
         hideMenu: !!hide,
         hideTab,
-        disabled: status === BasicStatus.DISABLE,
+        disabled: status && status.name === 'Disable',
       },
     };
 

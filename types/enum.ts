@@ -1,10 +1,10 @@
-export enum BasicStatus {
-  DISABLE,
-  ENABLE,
+export interface BasicStatus {
+  id: string;
+  name: string;
 }
 
 export enum ResultEnum {
-  SUCCESS = 0,
+  SUCCESS = 200,
   ERROR = -1,
   TIMEOUT = 401,
 }

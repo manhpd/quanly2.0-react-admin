@@ -11,12 +11,16 @@ type Props = {
 };
 export default function AuthGuard({ children }: Props) {
   const router = useRouter();
-  const { token } = useUserToken();
+  const { token, tokenExpires } = useUserToken();
   const check = useCallback(() => {
     if (!token) {
+      // check tokend expired
+      if (tokenExpires && tokenExpires < Date.now()) {
+        router.replace('/login');
+      }
       router.replace('/login');
     }
-  }, [router, token]);
+  }, [router, token, tokenExpires]);
 
   useEffect(() => {
     check();

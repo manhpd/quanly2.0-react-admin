@@ -29,6 +29,7 @@ axiosInstance.interceptors.request.use(
 
 // create response interceptor
 axiosInstance.interceptors.response.use(
+  // TODO : Fix type any
   (res: any) => {
     if (!res.data) throw new Error(t('sys.api.apiRequestFailed'));
     const { status, data } = res;
